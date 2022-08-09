@@ -9,7 +9,6 @@ import java.awt.BasicStroke;
 import java.awt.Stroke;
 import javax.swing.Timer;
 import javax.swing.JPanel;
-
  
 public class PongPanel extends JPanel implements ActionListener, KeyListener { //the panel which the game runs in (different from the window)
 	
