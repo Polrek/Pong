@@ -11,9 +11,11 @@ import javax.swing.Timer;
 import javax.swing.JPanel;
  
 public class PongPanel extends JPanel implements ActionListener, KeyListener { //the panel which the game runs in (different from the window)
-	
+
 	private static final Color BACKGROUND_COLOUR = Color.BLACK;
 	private static final int TIMER_DELAY = 5; //ms?
+	boolean gameInitialised = false; //we will set this to true when everything gets created
+	Ball ball; //ball variable (of type Ball (from the Ball class))
 	
 	public PongPanel() { //this is the PongPanel constructor
 		setBackground(BACKGROUND_COLOUR);
@@ -46,12 +48,18 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener { /
 	}
 	
 	private void update() {
-		
+		if(!gameInitialised) {
+			createObjects();
+			gameInitialised = true;
+		}
 	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		paintDottedLine(g);
+		if(gameInitialised) {
+			paintSprite(g, ball);
+		}
 		
 	}
 	
@@ -64,5 +72,15 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener { /
         g2d.dispose();
 		
 	}
-  
+	
+	private void paintSprite(Graphics g, Sprite sprite) {
+		g.setColor(sprite.getColour());
+		g.fillRect(sprite.getXPosition(), sprite.getYPosition(), sprite.getWidth(), sprite.getHeight());
+	}
+	
+	public void createObjects() {
+		ball = new Ball(getWidth(), getHeight()); //this creates the ball object using the width and height properties that are part of the Ball class.
+	}
+	
+	  
  }

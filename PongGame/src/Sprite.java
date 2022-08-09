@@ -1,7 +1,8 @@
 import java.awt.Color;
 import java.awt.Rectangle;
 
-	public class Sprite {
+public class Sprite {
+	
 	private int xPosition, yPosition;
 	private int xVelocity, yVelocity;
 	private int width, height;
