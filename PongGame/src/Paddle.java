@@ -12,7 +12,7 @@ public class Paddle extends Sprite {
 	setHeight(PADDLE_HEIGHT);
 	setColour(PADDLE_COLOUR);
 	int xPos;
-	if (player == Player.One) {
+	if (player == Player.ONE) {
 		xPos = DISTANCE_FROM_EDGE; //sets the position of the player.one paddle to the distance from the edge
 	}
 	else {

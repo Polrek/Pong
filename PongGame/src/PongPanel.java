@@ -14,9 +14,11 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener { /
 
 	private static final Color BACKGROUND_COLOUR = Color.BLACK;
 	private static final int TIMER_DELAY = 5; //ms?
-	boolean gameInitialised = false; //we will set this to true when everything gets created
-	Ball ball; //ball variable (of type Ball (from the Ball class))
 	
+	Ball ball; //ball variable (of type Ball (from the Ball class))
+	GameState gameState = GameState.INITIALISING; //gamestate variable of type GameState //not sure if uppercase or not
+	Paddle paddle1, paddle2;
+		
 	public PongPanel() { //this is the PongPanel constructor
 		setBackground(BACKGROUND_COLOUR);
 		Timer timer = new Timer(TIMER_DELAY, this);
@@ -48,17 +50,29 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener { /
 	}
 	
 	private void update() {
-		if(!gameInitialised) {
-			createObjects();
-			gameInitialised = true;
-		}
+		switch(gameState) {
+        case INITIALISING: {
+            createObjects();
+           gameState = GameState.PLAYING;
+            break;
+        }
+        case PLAYING: {
+            break;
+       }
+       case GAMEOVER: {
+           break;
+       }
+   }
 	}
 	
+	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		paintDottedLine(g);
-		if(gameInitialised) {
+		if(gameState != GameState.INITIALISING) {
 			paintSprite(g, ball);
+			paintSprite(g, paddle1);
+			paintSprite(g, paddle2);
 		}
 		
 	}
@@ -80,6 +94,8 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener { /
 	
 	public void createObjects() {
 		ball = new Ball(getWidth(), getHeight()); //this creates the ball object using the width and height properties that are part of the Ball class.
+		paddle1 = new Paddle(Player.ONE, getWidth(), getHeight());
+		paddle2 = new Paddle(Player.TWO, getWidth(), getHeight());
 	}
 	
 	  
