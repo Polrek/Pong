@@ -94,8 +94,8 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener { /
 	
 	public void createObjects() {
 		ball = new Ball(getWidth(), getHeight()); //this creates the ball object using the width and height properties that are part of the Ball class.
-		paddle1 = new Paddle(Player.ONE, getWidth(), getHeight());
-		paddle2 = new Paddle(Player.TWO, getWidth(), getHeight());
+		paddle1 = new Paddle(Player.ONE, getWidth(), getHeight());  //creates paddle1 (not paint!)
+		paddle2 = new Paddle(Player.TWO, getWidth(), getHeight()); //creates paddle2 (not paint!)
 	}
 	
 	  
