@@ -35,14 +35,29 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener { /
 
 	@Override
 	public void keyPressed(KeyEvent event) {
-		// TODO Auto-generated method stub
+		if (event.getKeyCode() == KeyEvent.VK_UP) { //detects the keyboard up arrow being pressed
+			paddle2.setYVelocity(-1);
+		}
+		else if (event.getKeyCode() == KeyEvent.VK_DOWN) { //detects the keyboard down arrow being pressed
+			paddle2.setYVelocity(1);
+		}
+		if (event.getKeyCode() == KeyEvent.VK_W) { //detects the W key being pressed
+			paddle1.setYVelocity(-1);
+		}
+		else if (event.getKeyCode() == KeyEvent.VK_S) { //detects the S key being pressed
+			paddle1.setYVelocity(1);
+		}
 		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent event) {
-		// TODO Auto-generated method stub
-		
+		 if(event.getKeyCode() == KeyEvent.VK_UP || event.getKeyCode() == KeyEvent.VK_DOWN) {
+            paddle2.setYVelocity(0);
+		 }
+		 if(event.getKeyCode() == KeyEvent.VK_W || event.getKeyCode() == KeyEvent.VK_S) {
+	            paddle2.setYVelocity(0);
+			 }
 	}
 
 	@Override //
@@ -61,6 +76,8 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener { /
            break;
         }
         case PLAYING: {
+        	moveObject(paddle1); 
+        	moveObject(paddle2);
         	moveObject(ball); //moves the ball
         	checkWallBounce(); //checks of the ball hit the wall
             break;
