@@ -56,8 +56,8 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener { /
             paddle2.setYVelocity(0);
 		 }
 		 if(event.getKeyCode() == KeyEvent.VK_W || event.getKeyCode() == KeyEvent.VK_S) {
-	            paddle2.setYVelocity(0);
-			 }
+	        paddle1.setYVelocity(0);
+		 }
 	}
 
 	@Override //
@@ -80,6 +80,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener { /
         	moveObject(paddle2);
         	moveObject(ball); //moves the ball
         	checkWallBounce(); //checks of the ball hit the wall
+        	checkPaddleBounce(); // check if the ball intersects with the paddle/hits it
             break;
        }
        case GAMEOVER: {
@@ -111,9 +112,15 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener { /
 		ball.resetToInitialPosition();
 	}
 	
+	private void checkPaddleBounce() {
+		if(ball.getXVelocity() < 0 && ball.getRectangle().intersects(paddle1.getRectangle())) {
+	          ball.setXVelocity(BALL_MOVEMENT_SPEED);
+	}
+		if(ball.getXVelocity() > 0 && ball.getRectangle().intersects(paddle2.getRectangle())) {
+	          ball.setXVelocity(-BALL_MOVEMENT_SPEED);
+	      }
 	
-	
-	
+	}
 	
 	@Override
 	public void paintComponent(Graphics g) {
