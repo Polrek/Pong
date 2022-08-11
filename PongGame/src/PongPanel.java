@@ -107,9 +107,13 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener { /
 		}
 	}
 	
-	public void resetBall() {
+	private void resetBall() {
 		ball.resetToInitialPosition();
 	}
+	
+	
+	
+	
 	
 	@Override
 	public void paintComponent(Graphics g) {
