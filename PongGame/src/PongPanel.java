@@ -11,10 +11,10 @@ import javax.swing.Timer;
 import javax.swing.JPanel;
  
 public class PongPanel extends JPanel implements ActionListener, KeyListener { //the panel which the game runs in (different from the window)
-
+	//variables for PongPanel cass
 	private static final Color BACKGROUND_COLOUR = Color.BLACK;
 	private static final int TIMER_DELAY = 5; //ms?
-	
+	private final static int BALL_MOVEMENT_SPEED = 2;
 	Ball ball; //ball variable (of type Ball (from the Ball class))
 	GameState gameState = GameState.INITIALISING; //gamestate variable of type GameState //not sure if uppercase or not
 	Paddle paddle1, paddle2;
@@ -23,6 +23,8 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener { /
 		setBackground(BACKGROUND_COLOUR);
 		Timer timer = new Timer(TIMER_DELAY, this);
 		timer.start();
+		addKeyListener(this); //enables keyPressed() and keyReleased() to work
+		setFocusable(true); //jPanel must have focus to receive keyboard events
 	}
 
 	@Override
@@ -52,17 +54,44 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener { /
 	private void update() {
 		switch(gameState) {
         case INITIALISING: {
-            createObjects();
+           createObjects();
            gameState = GameState.PLAYING;
-            break;
+           ball.setXVelocity(BALL_MOVEMENT_SPEED);
+           ball.setYVelocity(BALL_MOVEMENT_SPEED);
+           break;
         }
         case PLAYING: {
+        	moveObject(ball); //moves the ball
+        	checkWallBounce(); //checks of the ball hit the wall
             break;
        }
        case GAMEOVER: {
            break;
        }
    }
+	}
+	
+	private void moveObject(Sprite obj) {
+		obj.setXPosition(obj.getXPosition() + obj.getXVelocity(),getWidth());
+		obj.setYPosition(obj.getYPosition() + obj.getYVelocity(),getHeight());
+	}
+	
+	private void checkWallBounce() { //ball has hit the LHS of the screen
+		if (ball.getXPosition() <= 0) {
+			ball.setXVelocity(-ball.getXVelocity()); //reverses the velocity of the ball "bounce"
+			resetBall(); //if we don't reverse the velocity before this, the ball would always start moving the direction of the loser
+		}
+		else if (ball.getXPosition() >= getWidth() - ball.getWidth()) { //ball has hit the RHS of the screen
+			ball.setXVelocity(-ball.getXVelocity());
+			resetBall(); //if we don't reverse the velocity before this, the ball would always start moving the direction of the loser
+		}
+		if (ball.getYPosition() <= 0 || ball.getYPosition() >= getHeight() - ball.getHeight()) { //ball has hit the top or bottom of the screen
+			ball.setYVelocity(-ball.getYVelocity());
+		}
+	}
+	
+	public void resetBall() {
+		ball.resetToInitialPosition();
 	}
 	
 	@Override

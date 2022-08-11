@@ -68,11 +68,11 @@ public class Sprite {
 	     }
 	}
 	
-	public void setxVelocity(int xVelocity) { //sets the L-R velocity of the sprite
+	public void setXVelocity(int xVelocity) { //sets the L-R velocity of the sprite
 		this.xVelocity = xVelocity; 
 	}
 
-	public void setyVelocity(int yVelocity) { //sets the up-down velocity of the sprite
+	public void setYVelocity(int yVelocity) { //sets the up-down velocity of the sprite
 		this.yVelocity = yVelocity;
 	}
 
