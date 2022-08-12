@@ -84,6 +84,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener { /
         	moveObject(ball); //moves the ball
         	checkWallBounce(); //checks of the ball hit the wall
         	checkPaddleBounce(); // check if the ball intersects with the paddle/hits it
+        	checkWin(); //checks if any player equals the points to win value (has won the game)
             break;
        }
        case GAMEOVER: {
@@ -100,15 +101,18 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener { /
 	private void checkWallBounce() { //ball has hit the LHS of the screen
 		if (ball.getXPosition() <= 0) {
 			ball.setXVelocity(-ball.getXVelocity()); //reverses the velocity of the ball "bounce"
+			addScore(Player.TWO);
 			resetBall(); //if we don't reverse the velocity before this, the ball would always start moving the direction of the loser
 		}
 		else if (ball.getXPosition() >= getWidth() - ball.getWidth()) { //ball has hit the RHS of the screen
 			ball.setXVelocity(-ball.getXVelocity());
+			addScore(Player.ONE);
 			resetBall(); //if we don't reverse the velocity before this, the ball would always start moving the direction of the loser
 		}
 		if (ball.getYPosition() <= 0 || ball.getYPosition() >= getHeight() - ball.getHeight()) { //ball has hit the top or bottom of the screen
 			ball.setYVelocity(-ball.getYVelocity());
 		}
+		
 	}
 	
 	private void resetBall() {
@@ -158,5 +162,24 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener { /
 		paddle2 = new Paddle(Player.TWO, getWidth(), getHeight()); //creates paddle2 (not paint!)
 	}
 	
+	private void addScore(Player player) {
+        if (player == Player.ONE) {
+            player1Score++;
+        } 
+        else if (player == Player.TWO) {
+            player2Score++;
+        }
+    }
+	
+	 private void checkWin() {
+         if (player1Score >= POINTS_TO_WIN) {
+             gameWinner = Player.ONE;
+             gameState = GameState.GAMEOVER;
+         } 
+         else if (player2Score >= POINTS_TO_WIN) {
+             gameWinner = Player.TWO;
+             gameState = GameState.GAMEOVER;
+         }
+     }
 	  
  }
