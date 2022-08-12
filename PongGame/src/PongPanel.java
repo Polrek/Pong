@@ -12,11 +12,11 @@ import javax.swing.Timer;
 import javax.swing.JPanel;
  
 public class PongPanel extends JPanel implements ActionListener, KeyListener { //the panel which the game runs in (different from the window)
-	//variables for PongPanel cass
-	private static final Color BACKGROUND_COLOUR = Color.BLACK;
+	//variables for PongPanel class
+	private static final Color BACKGROUND_COLOUR = Color.WHITE;
 	private static final int TIMER_DELAY = 5; //ms?
 	private final static int BALL_MOVEMENT_SPEED = 2;
-	private final static int POINTS_TO_WIN = 3;
+	private final static int POINTS_TO_WIN = 11;
 	private final static int SCORE_TEXT_X = 100;
 	private final static int SCORE_TEXT_Y = 100;
 	private final static int SCORE_FONT_SIZE = 50;

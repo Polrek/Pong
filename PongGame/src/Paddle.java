@@ -3,7 +3,7 @@ import java.awt.Color;
 public class Paddle extends Sprite {
  public static final int PADDLE_WIDTH = 10;
  public static final int PADDLE_HEIGHT = 100;
- public static final Color PADDLE_COLOUR = Color.WHITE;
+ public static final Color PADDLE_COLOUR = Color.BLACK;
  public static final int DISTANCE_FROM_EDGE = 40;
  
 //constructor
