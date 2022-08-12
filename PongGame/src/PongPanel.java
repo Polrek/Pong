@@ -15,17 +15,17 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener { /
 	//variables for PongPanel cass
 	private static final Color BACKGROUND_COLOUR = Color.BLACK;
 	private static final int TIMER_DELAY = 5; //ms?
-	private final static int BALL_MOVEMENT_SPEED = 2;
-	private final static int POINTS_TO_WIN = 3;
-	private final static int SCORE_TEXT_X = 100;
-	private final static int SCORE_TEXT_Y = 100;
-	private final static int SCORE_FONT_SIZE = 50;
-	private final static String SCORE_FONT_FAMILY = "Serif";
-	private final static int WINNER_TEXT_X = 200;
-	private final static int WINNER_TEXT_Y = 200;
-	private final static int WINNER_FONT_SIZE = 40;
-	private final static String WINNER_FONT_FAMILY = "Serif";
-	private final static String WINNER_TEXT = "WIN!";
+	private static final int BALL_MOVEMENT_SPEED = 2;
+	private static final int POINTS_TO_WIN = 3;
+	private static final int SCORE_TEXT_X = 100;
+	private static final int SCORE_TEXT_Y = 100;
+	private static final int SCORE_FONT_SIZE = 50;
+	private static final String SCORE_FONT_FAMILY = "Serif";
+	private static final int WINNER_TEXT_X = 200;
+	private static final int WINNER_TEXT_Y = 200;
+	private static final int WINNER_FONT_SIZE = 40;
+	private static final String WINNER_FONT_FAMILY = "Serif";
+	private static final String WINNER_TEXT = "WIN!";
 	int player1Score = 0;
 	int player2Score = 0;
 	Player gameWinner;
