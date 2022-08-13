@@ -30,7 +30,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener { /
 	int player2Score = 0;
 	Player gameWinner;
 	Ball ball; //ball variable (of type Ball (from the Ball class))
-	GameState gameState = GameState.INITIALISING; //gamestate variable of type GameState //not sure if uppercase or not
+	GameState gameState = GameState.INITIALISING; //gameState variable of type GameState //not sure if uppercase or not
 	Paddle paddle1, paddle2;
 	public PongPanel() { //this is the PongPanel constructor
 		setBackground(BACKGROUND_COLOUR);
